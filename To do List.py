@@ -1,60 +1,50 @@
 tasks = []
 
 
+print("Welcome to the to do list!")
+
+
 def addTask():
-    task = input("Please enter a task: ")
-    tasks.append(task)
-    print(f"Tasks '{task}' added to the list.")
-    # f allows you to add variables
+    add = input("What task would you like to add: ")
+    tasks.append(add)
+    print(f"'{add}' has been added to tasks.")
 
 
-def deleteTask():
-    listTasks()
+def delTask():
     try:
-        taskToDelete = int(input("Enter a task to delete: "))
-        if taskToDelete < len(tasks) and taskToDelete >= 0:
-            tasks.pop(taskToDelete)
-            print(f"Task {taskToDelete} has been removed.")
-        else:
-            print(f"Task #{taskToDelete} was not found.")
+        listTasks()
+        rm = int(input("Which # would you like to delete: "))
+        tasks.pop(rm)
+        print(f"'{rm}' has been deleted from tasks.")
     except:
-        print("Invalid input.")
-        # if number is not in task lists
+        print('Invalid Input. Try Again.')
 
 
 def listTasks():
-    if not tasks:  # if tasks is empty
-        print("There are no tasks currently.")
+    if not tasks:
+        print("No tasks yet.")
     else:
-        print("Current Tasks:")
-        for index, task in enumerate(tasks):  # iterates through tasks???
-            print(f"Task #{index}. {task}")
+        for i in range(len(tasks)):
+            print(i, '.', tasks[i])
 
 
-# checks if script is being run as main program
-if __name__ == "__main__":
-    # create a loop to run app
-    print("Welcome to the todo list app :)")
-    while True:
-        print("")
-        print("Please select one of the following options")
-        print("------------------------------------------")
-        print("1. Add a task")
-        print("2. Delete a task")
-        print("3. List Tasks")
-        print("4. Quit")
+while True:
+    print('\n')
+    print("Please select one of the following options")
+    print("-------------------------------------------")
+    print("1. Add a task")
+    print("2. Remove a task")
+    print("3. List all tasks")
+    print("4. Quit")
+    user = input("Enter you choice: ")
 
-        choice = input("Enter your choice: ")
-
-        if choice == "1":
-            addTask()
-        elif choice == "2":
-            deleteTask()
-        elif choice == "3":
-            listTasks()
-        elif choice == "4":
-            break
-        else:
-            print("Invalid input. Please try again.")
-
-    print("Thank you for using the to do list app :)")
+    if user == '1':
+        addTask()
+    elif user == '2':
+        delTask()
+    elif user == '3':
+        listTasks()
+    elif user == '4':
+        break
+    else:
+        print("Invalid Input. Try again.")
